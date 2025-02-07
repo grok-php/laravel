@@ -1,0 +1,6 @@
+vendor
+.env
+.env.example
+composer.lock
+phpstan.neon
+phpunit.xml
