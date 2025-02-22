@@ -140,7 +140,8 @@ $response = GrokAI::chat(
     new ChatOptions(model: Model::GROK_2, stream: true)
 );
 ```
-Streaming is useful for chatbots, assistants, and real-time applications.
+
+> Streaming is useful for chatbots, assistants, and real-time applications.
 ---
 
 ## 🧪 Testing
