@@ -23,15 +23,11 @@ class GrokServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->singleton(GrokClient::class, function ($app) {
-            return new GrokClient($app->make(GrokConfig::class));
-        });
+        $this->app->singleton(GrokClient::class, fn ($app) => new GrokClient($app->make(GrokConfig::class)));
 
-        $this->app->singleton(GrokAI::class, function ($app) {
-            return new GrokAI($app->make(GrokClient::class));
-        });
+        $this->app->singleton(GrokAI::class, fn ($app) => new GrokAI($app->make(GrokClient::class)));
 
-        $this->app->alias(GrokClient::class, 'grok-ai');
+        $this->app->alias(GrokAI::class, 'grok-ai');
     }
 
     public function boot(): void
