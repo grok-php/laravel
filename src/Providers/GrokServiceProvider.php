@@ -3,6 +3,7 @@
 namespace GrokPHP\Laravel\Providers;
 
 use GrokPHP\Laravel\Commands\InstallGrokCommand;
+use GrokPHP\Laravel\Services\GrokAI;
 use Illuminate\Support\ServiceProvider;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\GrokConfig;
@@ -24,6 +25,10 @@ class GrokServiceProvider extends ServiceProvider
 
         $this->app->singleton(GrokClient::class, function ($app) {
             return new GrokClient($app->make(GrokConfig::class));
+        });
+
+        $this->app->singleton(GrokAI::class, function ($app) {
+            return new GrokAI($app->make(GrokClient::class));
         });
 
         $this->app->alias(GrokClient::class, 'grok-ai');

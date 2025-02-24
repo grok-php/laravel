@@ -2,15 +2,17 @@
 
 namespace GrokPHP\Laravel\Facades;
 
+use GrokPHP\Client\Clients\Vision;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array chat(array $messages, \GrokPHP\Client\Config\ChatOptions $options)
+ * @method static array chat(array $messages, ?\GrokPHP\Client\Config\ChatOptions $options = null)
+ * @method static Vision vision()
  */
 class GrokAI extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'grok-ai';
+        return \GrokPHP\Laravel\Services\GrokAI::class;
     }
 }
