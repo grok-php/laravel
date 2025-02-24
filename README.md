@@ -159,7 +159,7 @@ If you discover a security vulnerability, please report it via email:
 
 ## 🤝 Contributing
 
-Want to improve this package? Check out [CONTRIBUTE.md](CONTRIBUTE.md) for contribution guidelines.
+Want to improve this package? Check out [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## 📄 License
 
