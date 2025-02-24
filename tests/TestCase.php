@@ -19,9 +19,4 @@ abstract class TestCase extends BaseTestCase
             'GrokAI' => GrokAI::class,
         ];
     }
-
-    protected function defineEnvironment($app)
-    {
-        $app['config']->set('grok.api_key', 'test-api-key');
-    }
 }
