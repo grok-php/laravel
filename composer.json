@@ -3,7 +3,6 @@
     "description": "Seamlessly integrate Grok AI into Laravel applications with an elegant, developer-friendly package. Leverage powerful AI models for chat, automation, and NLP while maintaining Laravel's expressive simplicity.",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.0",
     "homepage": "https://github.com/grok-php/laravel",
     "support": {
         "issues": "https://github.com/grok-php/laravel/issues",
