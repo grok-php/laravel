@@ -2,6 +2,7 @@
 
 namespace GrokPHP\Laravel\Providers;
 
+use GrokPHP\Laravel\Commands\InstallGrokCommand;
 use Illuminate\Support\ServiceProvider;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\GrokConfig;
@@ -32,12 +33,12 @@ class GrokServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \GrokPHP\Laravel\Commands\InstallGrokCommand::class,
+                InstallGrokCommand::class,
             ]);
 
             $this->publishes([
-                __DIR__ . '/../Config/grok.php' => config_path('grok.php'),
-            ], 'config');
+                __DIR__ . '/../../config/grok.php' => config_path('grok.php'),
+            ], 'grok-config');
         }
     }
 }
