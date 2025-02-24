@@ -68,15 +68,17 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^8.0",
-        "phpunit/phpunit": "^10.0",
-        "mockery/mockery": "^1.6.12",
-        "phpstan/phpstan": "^1.12"
+        "laravel/pint": "^1.20",
+        "phpstan/phpstan": "^1.12",
+        "mockery/mockery": "^1.6",
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test:types": "phpstan analyse src --ansi"
+        "test:types": "phpstan analyse src --ansi",
+        "format": "vendor/bin/pint"
     }
 }
