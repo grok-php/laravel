@@ -46,7 +46,7 @@
         "AI Developer Tools"
     ],
     "require": {
-        "php": ">=8.1",
+        "php": "^8.2 || ^8.3 || ^8.4",
         "laravel/framework": "^10.0|^11.0",
         "grok-php/client": "^1.3"
     },
