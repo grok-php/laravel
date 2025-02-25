@@ -1,39 +1,38 @@
-# 🛠 Contributing to Grok AI Laravel
+# **Contributing to Grok AI Laravel**
 
-First off, thanks for taking the time to contribute! 🎉  
-This guide outlines how you can help improve **Grok AI Laravel** and collaborate effectively.
-
----
-
-## 📖 Table of Contents
-- [🚀 Getting Started](#-getting-started)
-- [🐛 Reporting Bugs](#-reporting-bugs)
-- [✨ Feature Requests](#-feature-requests)
-- [🛠 Development Workflow](#-development-workflow)
-- [🧪 Running Tests](#-running-tests)
-- [🙌 Acknowledgements](#-acknowledgements)
+Thank you for considering contributing to **Grok AI Laravel**.  
+This guide outlines how you can help improve the package and collaborate effectively.
 
 ---
 
-## 🚀 Getting Started
+## **Table of Contents**
+- [Getting Started](#getting-started)
+- [Reporting Bugs](#reporting-bugs)
+- [Feature Requests](#feature-requests)
+- [Development Workflow](#development-workflow)
+- [Running Tests](#running-tests)
+- [Acknowledgements](#acknowledgements)
 
-### 1️⃣ Fork the Repository
+---
+
+## **Getting Started**
+
+### 1. Fork the Repository
 Click the **"Fork"** button at the top right of this repository to create your copy.
 
-### 2️⃣ Clone Your Fork
+### 2. Clone Your Fork
 ```sh
 git clone https://github.com/your-username/laravel-grok.git
 cd laravel-grok
 ```
 
-### 3️⃣ Install Dependencies
-
+### 3. Install Dependencies
 ```sh
 composer install
 ```
 
-### 4️⃣ Link Your Local Package
-If you're testing this package inside a Laravel project, you may use:
+### 4. Link Your Local Package
+If you're testing this package inside a Laravel project, use:
 
 ```sh
 composer remove grok-php/laravel
@@ -42,75 +41,98 @@ composer require grok-php/laravel:@dev --prefer-source
 
 ---
 
-## 🐛 Reporting Bugs
-Found a bug? Please [open an issue](https://github.com/grok-php/laravel/issues) and include:
+## **Reporting Bugs**
+If you find a bug, please [open an issue](https://github.com/grok-php/laravel/issues) and include:
 
-- A clear description of the bug.
-- Steps to reproduce the issue.
-- The expected vs. actual behavior.
+- A clear description of the issue.
+- Steps to reproduce the problem.
+- Expected vs. actual behavior.
 - Any error messages or logs.
-- Your Laravel and PHP version.
+- Laravel and PHP versions used.
+
+Providing as much detail as possible helps resolve the issue faster.
 
 ---
 
-## ✨ Feature Requests
-Have an idea? We'd love to hear it!
-Submit a [feature request](https://github.com/grok-php/laravel/issues) with:
+## **Feature Requests**
+If you have an idea for improving the package, [submit a feature request](https://github.com/grok-php/laravel/issues) including:
 
-- A detailed explanation of your proposed feature.
+- A detailed explanation of the proposed feature.
 - The problem it solves.
 - Example use cases.
 
+Well-documented proposals have a higher chance of being implemented.
+
 ---
 
-## 🛠 Development Workflow
+## **Development Workflow**
 
-1- Create a new branch for your feature or fix:
+### 1. Create a New Branch
+Before making changes, create a new branch:
 
 ```sh
-git checkout -b feature/your-new-feature
+git checkout -b feature/your-feature-name
 ```
 
-2- Make Your Changes & Add Tests
-- Follow PSR-12 coding standards.
-- Use typed properties, enums, and traits.
-- Document your functions with PHPDoc.
-- Always write unit tests for new features.
+### 2. Implement Your Changes
+- Follow **PSR-12** coding standards.
+- Use **typed properties, enums, and traits** where applicable.
+- Add PHPDoc comments for better readability.
+- Ensure backward compatibility.
 
-3- Run tests before committing:
-
+### 3. Run Tests Before Committing
 ```sh
 composer test
 ```
-4- Commit Your Changes
 
+### 4. Commit Your Changes
 ```sh
 git add .
-git commit -m "✨ Added new feature X"
+git commit -m "Add feature X"
 ```
 
-7- Push to Your Fork
-
+### 5. Push to Your Fork
 ```sh
-git push origin feature/your-new-feature
+git push origin feature/your-feature-name
 ```
 
-6- Open a Pull Request (PR)
-- Go to [Grok PHP Client Repo](https://github.com/grok-php/laravel/pulls)
-- Click "New Pull Request", select your branch, and submit 🚀
+### 6. Open a Pull Request
+- Navigate to [Grok AI Laravel Pull Requests](https://github.com/grok-php/laravel/pulls).
+- Click "New Pull Request", select your branch, and submit.
+
+A clear and well-documented PR speeds up the review process.
 
 ---
 
-## 🧪 Running Tests
-We use PHPUnit for testing. Before submitting your PR, run:
+## **Running Tests**
+We use **PHPUnit** for testing. Before running tests, copy the PHPUnit configuration file:
+
+```sh
+cp phpunit.xml.dist phpunit.xml
+```
+
+Then, update your API key inside `phpunit.xml`:
+
+```xml
+<php>
+    <env name="GROK_API_KEY" value="your-api-key-here"/>
+</php>
+```
+
+Once configured, run the tests:
 
 ```sh
 composer test
+```
 or
+```sh
 vendor/bin/phpunit
 ```
 
-## 🙌 Acknowledgements
-A huge thank you to everyone contributing! ❤️ Your efforts help improve this package for the entire Laravel community.
+Ensure all tests pass before submitting a PR.
 
-🚀 Happy coding!
+---
+
+## **Acknowledgements**
+Your contributions help make **Grok AI Laravel** better for the Laravel community.  
+Thank you for taking the time to improve this package.
