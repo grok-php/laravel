@@ -1,45 +1,47 @@
-# 🧠 Grok AI Laravel
+### **Grok AI Laravel**
 
-![Grok AI Laravel](assets/images/grok-laravel.png)
+**Effortlessly integrate Grok AI into Laravel applications with a clean, developer-friendly package.**  
+Leverage **powerful AI models** for **chat, automation, vision, and natural language processing (NLP)** while maintaining Laravel's expressive simplicity.
 
-**Seamlessly integrate Grok AI into Laravel applications with an elegant, developer-friendly package.**  
-Leverage **powerful AI models** for **chat, automation, and NLP**, while maintaining Laravel's expressive simplicity.
-
-[![Latest Version](https://img.shields.io/packagist/v/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)
-[![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-blue)](https://php.net)
-[![Laravel Version](https://img.shields.io/badge/Laravel-10%2B-red)](https://laravel.com)
-[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
-
----
-
-## 📖 Table of Contents
-- [✨ Features](#-features)
-- [📦 Installation](#-installation)
-- [🚀 Quick Start](#-quick-start)
-  - [Basic Usage](#basic-usage)
-  - [Advanced Configuration](#advanced-configuration)
-- [📌 Available Grok AI Models](#-available-grok-ai-models)
-- [⚡ Streaming Responses](#-streaming-responses)
-- [🧪 Testing](#-testing)
-- [🔒 Security](#-security)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+[![Latest Version](https://img.shields.io/packagist/v/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)  
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue)](https://php.net)  
+[![Laravel Version](https://img.shields.io/badge/Laravel-10%2B-red)](https://laravel.com)  
+[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)  
+[![Tests](https://github.com/grok-php/laravel/actions/workflows/run-tests.yml/badge.svg)](https://github.com/grok-php/laravel/actions)
 
 ---
 
-## ✨ Features
+## Table of Contents
 
-✅ **Seamless Laravel Integration** – Works effortlessly with Laravel 10+  
-✅ **Simple API Client** – Access Grok AI models with a fluent, clean syntax  
-✅ **Supports All Grok AI Models** – Choose from multiple **LLM & vision models**  
-✅ **Streaming Capable** – Enable **real-time AI responses** for interactive experiences  
-✅ **Configurable Defaults** – Set your preferred model, temperature, and more  
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+    - [Chat API](#chat-api)
+    - [Vision Analysis](#vision-analysis-image-recognition)
+    - [Error Handling](#error-handling)
+- [Available Grok AI Models](#available-grok-ai-models)
+- [Streaming Responses](#streaming-responses)
+- [Testing](#testing)
+- [Security](#security)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 📦 Installation
+## Features
 
-Install via **Composer**:
+- **Seamless Laravel Integration** – Works with Laravel 10, 11, and 12
+- **Simple API Client** – Access Grok AI models with a clean and intuitive API
+- **Supports Chat & Vision** – Send both text and image-based requests
+- **Streaming Capable** – Enable real-time AI responses
+- **Configurable Defaults** – Set model, temperature, and timeout via config
+
+---
+
+## Installation
+
+Install via Composer:
+
 ```sh
 composer require grok-php/laravel
 ```
@@ -49,22 +51,23 @@ After installation, run the setup command:
 ```sh
 php artisan grok:install
 ```
+
 This command will:
 
 - Publish the configuration file (`config/grok.php`).
-- Add necessary environment variables to `.env` and `.env.example`.
+- Add necessary environment variables to `.env`.
 
 Add your API key in `.env`:
+
 ```sh
 GROK_API_KEY=your-api-key
 ```
 
 ---
 
+## Quick Start
 
-## 🚀 Quick Start
-
-### Basic Usage
+### Chat API
 
 ```php
 use GrokPHP\Laravel\Facades\GrokAI;
@@ -76,45 +79,40 @@ $response = GrokAI::chat(
     new ChatOptions(model: Model::GROK_2)
 );
 
-echo $response['choices'][0]['message']['content'];
+echo $response->content();
 ```
 
-### 📌 Defaults Used:
-Model: grok-2
-Temperature: 0.7
-Streaming: false
-
-### Advanced Configuration
-Modify your `config/grok.php` file:
+### Vision Analysis (Image Recognition)
 
 ```php
-return [
-    'api_key' => env('GROK_API_KEY'),
-    'base_uri' => env('GROK_BASE_URI', 'https://api.grok.com/v1'),
-    'default_model' => env('GROK_DEFAULT_MODEL', 'grok-2'),
-    'default_temperature' => env('GROK_DEFAULT_TEMPERATURE', 0.7),
-    'enable_streaming' => env('GROK_ENABLE_STREAMING', false),
-    'timeout' => env('GROK_API_TIMEOUT', 30),
-];
-```
-
-📌 You can override any setting dynamically:
-
-```php
-$response = GrokAI::chat(
-    [['role' => 'user', 'content' => 'Explain black holes']],
-    new ChatOptions(model: Model::GROK_2_LATEST, temperature: 1.2, stream: true)
+$response = GrokAI::vision()->analyze(
+    'https://example.com/sample.jpg',
+    'Describe this image'
 );
+
+echo $response->content();
 ```
+
+### Error Handling
+
+All errors are wrapped in the `GrokException` class:
+
+```php
+use GrokPHP\Client\Exceptions\GrokException;
+
+try {
+    $response = GrokAI::chat(
+        [['role' => 'user', 'content' => 'Hello!']]
+    );
+    echo $response->content();
+} catch (GrokException $e) {
+    echo "Error: " . $e->getMessage();
+}
+```
+
 ---
 
-
-
-
-## 📌 Available Grok AI Models
-Grok AI offers multiple models, each optimized for different use cases.
-These models are available in the Model enum inside our package:
-📄 `src/Enums/Model.php`
+## Available Grok AI Models
 
 | Model Enum                  | API Model Name       | Description                                         |
 |-----------------------------|----------------------|-----------------------------------------------------|
@@ -127,11 +125,12 @@ These models are available in the Model enum inside our package:
 | `Model::GROK_2_LATEST`        | grok-2-latest        | Latest iteration of Grok-2                          |
 | `Model::GROK_BETA`            | grok-beta            | Experimental beta model                             |
 
-#### 📌 Default model used: `Model::GROK_2`
+Default model used: `Model::GROK_2`
+
 ---
 
+## Streaming Responses
 
-## ⚡ Streaming Responses
 Enable real-time AI responses by setting `stream: true`:
 
 ```php
@@ -141,26 +140,45 @@ $response = GrokAI::chat(
 );
 ```
 
-> Streaming is useful for chatbots, assistants, and real-time applications.
+Streaming is useful for chatbots, assistants, and real-time applications.
+
 ---
 
-## 🧪 Testing
-Run tests using Pest PHP:
+## Testing
+
+To run PHPUnit tests, copy the `phpunit.xml.dist` file to `phpunit.xml` and set your API key.
+
+```sh
+cp phpunit.xml.dist phpunit.xml
+```
+
+```xml
+<php>
+    <env name="GROK_API_KEY" value="your-grok-api-key"/>
+</php>
+```
+
+Now, run the tests:
 
 ```sh
 composer test
-or
-vendor/bin/phpunit
 ```
 
-## 🔒 Security
-If you discover a security vulnerability, please report it via email:
-📩 [thefeqy@gmail.com](mailto:thefeqy@gmail.com)   
+---
 
-## 🤝 Contributing
+## Security
 
-Want to improve this package? Check out [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+If you discover a security vulnerability, please report it via email:  
+[thefeqy@gmail.com](mailto:thefeqy@gmail.com)
 
-## 📄 License
+---
+
+## Contributing
+
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute.
+
+---
+
+## License
 
 This package is open-source software licensed under the [MIT License](LICENSE).
