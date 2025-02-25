@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 class InstallGrokCommand extends Command
 {
     protected $signature = 'grok:install';
+
     protected $description = 'Prepares the Grok AI client for use in Laravel.';
 
     private const REPO_URL = 'https://github.com/grok-php/laravel';
@@ -17,6 +18,7 @@ class InstallGrokCommand extends Command
         // Check if the package is already installed
         if ($this->isAlreadyInstalled()) {
             $this->warn('⚠️ Grok AI is already installed. No changes were made.');
+
             return;
         }
 
@@ -60,6 +62,7 @@ class InstallGrokCommand extends Command
     {
         if (file_exists(config_path('grok.php'))) {
             $this->warn('⚠️ Config file already exists: config/grok.php');
+
             return;
         }
 
@@ -79,13 +82,14 @@ class InstallGrokCommand extends Command
 
         if (! file_exists($filePath)) {
             $this->warn("⚠️ Skipping: {$envFile} not found.");
+
             return;
         }
 
         $fileContent = file_get_contents($filePath);
 
         // Grok AI environment variables with comments
-        $envSection = <<<EOL
+        $envSection = <<<'EOL'
 
 # --------------------------------------------------------------------------
 # 🧠 GROK AI CONFIGURATION
@@ -104,11 +108,12 @@ EOL;
         // Check if any of the variables already exist
         if (str_contains($fileContent, 'GROK_API_KEY')) {
             $this->info("✅ {$envFile} is already up to date.");
+
             return;
         }
 
         // Append the section to the .env file
-        file_put_contents($filePath, PHP_EOL . $envSection . PHP_EOL, FILE_APPEND);
+        file_put_contents($filePath, PHP_EOL.$envSection.PHP_EOL, FILE_APPEND);
 
         $this->info("✅ Added Grok AI environment variables to {$envFile}");
     }
@@ -133,11 +138,11 @@ EOL;
         $this->info('Opening GitHub repository... 🌍');
 
         if (PHP_OS_FAMILY === 'Darwin') {
-            exec('open ' . self::REPO_URL);
+            exec('open '.self::REPO_URL);
         } elseif (PHP_OS_FAMILY === 'Windows') {
-            exec('start ' . self::REPO_URL);
+            exec('start '.self::REPO_URL);
         } elseif (PHP_OS_FAMILY === 'Linux') {
-            exec('xdg-open ' . self::REPO_URL);
+            exec('xdg-open '.self::REPO_URL);
         }
     }
 }

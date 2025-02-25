@@ -2,18 +2,18 @@
 
 namespace GrokPHP\Laravel\Providers;
 
-use GrokPHP\Laravel\Commands\InstallGrokCommand;
-use GrokPHP\Laravel\Services\GrokAI;
-use Illuminate\Support\ServiceProvider;
 use GrokPHP\Client\Clients\GrokClient;
 use GrokPHP\Client\Config\GrokConfig;
 use GrokPHP\Client\Enums\DefaultConfig;
+use GrokPHP\Laravel\Commands\InstallGrokCommand;
+use GrokPHP\Laravel\Services\GrokAI;
+use Illuminate\Support\ServiceProvider;
 
 class GrokServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/grok.php', 'grok');
+        $this->mergeConfigFrom(__DIR__.'/../../config/grok.php', 'grok');
 
         $this->app->singleton(GrokConfig::class, function () {
             return new GrokConfig(
@@ -38,7 +38,7 @@ class GrokServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([
-                __DIR__ . '/../../config/grok.php' => config_path('grok.php'),
+                __DIR__.'/../../config/grok.php' => config_path('grok.php'),
             ], 'grok-config');
         }
     }

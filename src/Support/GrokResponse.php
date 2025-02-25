@@ -37,7 +37,6 @@ class GrokResponse implements \JsonSerializable
 
     /**
      * Allow the GrokResponse object to be serialized to JSON.
-     * @return array
      */
     public function jsonSerialize(): array
     {

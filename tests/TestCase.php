@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use GrokPHP\Laravel\Providers\GrokServiceProvider;
 use GrokPHP\Laravel\Facades\GrokAI;
+use GrokPHP\Laravel\Providers\GrokServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {

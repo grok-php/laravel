@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use GrokPHP\Client\Exceptions\GrokException;
 use GrokPHP\Laravel\Facades\GrokAI;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use GrokPHP\Client\Exceptions\GrokException;
 
 class GrokAiTest extends TestCase
 {
@@ -17,7 +17,7 @@ class GrokAiTest extends TestCase
     public function test_it_can_send_a_chat_request(): void
     {
         $response = GrokAI::chat([
-            ['role' => 'user', 'content' => 'Tell me a joke!']
+            ['role' => 'user', 'content' => 'Tell me a joke!'],
         ])->full();
 
         $this->assertArrayHasKey('choices', $response);
@@ -31,7 +31,7 @@ class GrokAiTest extends TestCase
     public function test_it_returns_only_ai_response(): void
     {
         $content = GrokAI::chat([
-            ['role' => 'user', 'content' => 'Tell me a joke!']
+            ['role' => 'user', 'content' => 'Tell me a joke!'],
         ])->content();
 
         $this->assertIsString($content);
@@ -64,13 +64,12 @@ class GrokAiTest extends TestCase
         $this->expectExceptionMessage('No API key provided');
 
         GrokAI::chat([
-            ['role' => 'user', 'content' => 'Tell me a joke!']
+            ['role' => 'user', 'content' => 'Tell me a joke!'],
         ]);
     }
 
     /**
      * Test exception handling when using an invalid API key.
-     * @return void
      */
     public function test_it_throws_exception_for_invalid_api_key(): void
     {
@@ -80,7 +79,7 @@ class GrokAiTest extends TestCase
         $this->expectExceptionMessageMatches('/Incorrect API key/');
 
         GrokAI::chat([
-            ['role' => 'user', 'content' => 'Tell me a joke!']
+            ['role' => 'user', 'content' => 'Tell me a joke!'],
         ]);
     }
 

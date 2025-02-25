@@ -44,7 +44,7 @@ return [
     | Default Temperature
     |--------------------------------------------------------------------------
     |
-    | Controls the randomness of the AI’s responses. 
+    | Controls the randomness of the AI’s responses.
     | Lower values (e.g., 0.1) make responses more deterministic,
     | while higher values (e.g., 1.5) make them more creative.
     |
@@ -56,7 +56,7 @@ return [
     | Streaming Mode
     |--------------------------------------------------------------------------
     |
-    | Enable or disable streaming responses. When enabled, responses 
+    | Enable or disable streaming responses. When enabled, responses
     | will be returned in real-time as they are generated.
     |
     | Accepted values: true or false

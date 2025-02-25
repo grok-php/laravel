@@ -19,9 +19,7 @@ class GrokAI
 
     /**
      * Send a chat completion request to Grok API.
-     * @param array $messages
-     * @param ChatOptions|null $options
-     * @return GrokResponse
+     *
      * @throws GrokException
      */
     public function chat(array $messages, ?ChatOptions $options = null): GrokResponse
@@ -39,7 +37,6 @@ class GrokAI
 
     /**
      * Analyze an image using Grok Vision models.
-     * @return GrokVision
      */
     public function vision(): GrokVision
     {

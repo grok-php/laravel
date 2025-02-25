@@ -18,6 +18,7 @@ class GrokVision
 
     /**
      * Analyze an image using Grok Vision models.
+     *
      * @throws GrokException
      */
     public function analyze(string $imagePath, string $prompt, ?Model $model = null): GrokResponse

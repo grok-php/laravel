@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use GrokPHP\Client\Config\GrokConfig;
 use GrokPHP\Client\Enums\DefaultConfig;
+use PHPUnit\Framework\TestCase;
 
 class GrokConfigTest extends TestCase
 {
