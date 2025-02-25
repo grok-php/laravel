@@ -1,13 +1,14 @@
 ### **Grok AI Laravel**
 
-**Effortlessly integrate Grok AI into Laravel applications with a clean, developer-friendly package.**  
-Leverage **powerful AI models** for **chat, automation, vision, and natural language processing (NLP)** while maintaining Laravel's expressive simplicity.
+A **Laravel integration for the [GrokPHP Client](https://github.com/grok-php/client)**, designed to effortlessly incorporate Grok AI into Laravel applications with a clean and intuitive API.  
+Utilize **advanced AI models** for **chat, automation, and natural language processing**, all while preserving Laravel's simplicity and elegance.
 
-[![Latest Version](https://img.shields.io/packagist/v/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)  
-[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue)](https://php.net)  
-[![Laravel Version](https://img.shields.io/badge/Laravel-10%2B-red)](https://laravel.com)  
-[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)  
-[![Tests](https://github.com/grok-php/laravel/actions/workflows/run-tests.yml/badge.svg)](https://github.com/grok-php/laravel/actions)
+[![Latest Version](https://img.shields.io/packagist/v/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)
+[![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue)](https://php.net)
+[![Laravel Version](https://img.shields.io/badge/Laravel-10%2B-red)](https://laravel.com)
+[![Total Downloads](https://img.shields.io/packagist/dt/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)
+![GitHub Workflow Status](https://github.com/grok-php/laravel/actions/workflows/run-tests.yml/badge.svg)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 ---
 
