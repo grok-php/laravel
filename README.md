@@ -8,7 +8,7 @@ Leverage **powerful AI models** for **chat, automation, and NLP**, while maintai
 [![Latest Version](https://img.shields.io/packagist/v/grok-php/laravel)](https://packagist.org/packages/grok-php/laravel)
 [![PHP Version](https://img.shields.io/badge/PHP-8.1%2B-blue)](https://php.net)
 [![Laravel Version](https://img.shields.io/badge/Laravel-10%2B-red)](https://laravel.com)
-[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
 ---
 
