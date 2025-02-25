@@ -1,0 +1,59 @@
+name: run-tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    paths:
+      - '**.php'
+      - '.github/workflows/run-tests.yml'
+      - 'phpunit.xml.dist'
+      - 'composer.json'
+      - 'composer.lock'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.3, 8.4]
+        stability: [prefer-lowest, prefer-stable]
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.stability }} - Laravel Tests
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Install Dependencies (${{ matrix.stability }})
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - name: Configure PHPUnit
+        run: |
+          cp phpunit.xml.dist phpunit.xml
+          sed -i 's|<env name="GROK_API_KEY" value=""/>|<env name="GROK_API_KEY" value="${{ secrets.GROK_API_KEY }}"/>|g' phpunit.xml
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: composer-${{ matrix.php }}-${{ matrix.stability }}-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-${{ matrix.php }}-${{ matrix.stability }}-
+
+      - name: List Installed Dependencies
+        run: composer show -D
+
+      - name: Run PHPUnit Tests
+        run: vendor/bin/phpunit
